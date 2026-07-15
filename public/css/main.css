@@ -1,4 +1,4 @@
-html, body {
+/* html, body {
     background-color: lightblue;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -27,4 +27,161 @@ body {
             }
         }
     }
-}     
+}      */
+
+/* ==========================================
+   1. VARIABLES & SYSTEM DEFAULTS
+   ========================================== */
+:root {
+    /* Paleta de colores profesional y accesible */
+    --bg-color: #f8fafc;        /* Gris muy claro, suave a la vista */
+    --surface-color: #ffffff;   /* Blanco para contenedores */
+    --primary-color: #0284c7;   /* Azul corporativo/institucional */
+    --primary-hover: #0369a1;   /* Azul más oscuro para estados hover */
+    --text-main: #1e293b;       /* Gris oscuro para máxima legibilidad */
+    --text-muted: #475569;      /* Gris medio para textos secundarios */
+    
+    /* Tipografía y espaciado */
+    --font-stack: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --max-width: 1000px;
+}
+
+/* Reset básico y preparación para el Sticky Footer */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-stack);
+    font-size: 1rem;
+    line-height: 1.6;
+    
+    /* Flexbox layout vertical */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   2. NAVIGATION (Header)
+   ========================================== */
+nav {
+    background-color: var(--surface-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center; /* Centrado en móviles por defecto */
+        gap: 1.5rem;
+        flex-wrap: wrap; /* Evita que se rompa en pantallas muy chicas */
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-weight: 500;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.375rem;
+        transition: all 0.2s ease-in-out;
+
+        &:hover, &:focus {
+            color: var(--primary-color);
+            background-color: #f1f5f9;
+            outline: none; /* Asegura accesibilidad al navegar con teclado */
+        }
+    }
+}
+
+/* ==========================================
+   3. MAIN CONTENT (Centrado y auto-ajustable)
+   ========================================== */
+main {
+    flex-grow: 1; /* Hace que el contenido crezca y empuje al footer */
+    
+    /* Centrado del contenedor principal */
+    max-width: var(--max-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    box-sizing: border-box;
+    
+    /* Alineación del texto y elementos internos */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h1 {
+        color: var(--primary-color);
+        font-size: 2.25rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    h2 {
+        color: var(--text-main);
+        font-size: 1.5rem;
+        font-weight: 600;
+        max-width: 600px;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        max-width: 650px;
+        margin-bottom: 2rem;
+    }
+
+    /* Imagen responsiva */
+    .main-logo {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-top: 1rem;
+    }
+}
+
+/* ==========================================
+   4. FOOTER
+   ========================================== */
+footer {
+    background-color: var(--text-main);
+    color: #f8fafc;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: auto; /* Refuerzo para garantizar la posición abajo */
+    font-size: 0.9rem;
+
+    p {
+        margin: 0;
+    }
+}
+
+/* ==========================================
+   5. RESPONSIVE DESIGN (Media Queries)
+   ========================================== */
+@media (min-width: 768px) {
+    /* En pantallas grandes, alineamos el menú a la izquierda para un look más formal */
+    nav ul {
+        justify-content: flex-start;
+        max-width: var(--max-width);
+        margin: 0 auto;
+    }
+    
+    main h1 {
+        font-size: 3rem;
+    }
+    
+    main h2 {
+        font-size: 1.75rem;
+    }
+}
