@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
+import { getAllProjects } from './src/models/projects.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -45,10 +46,15 @@ app.get('/organizations', async (req, res) => {
      res.render('organizations', { title, organizations });
 });
 
+
 app.get('/projects', async (req, res) => {
+    const projects = await getAllProjects(); // Recupera los 15 proyectos de la BD
     const title = 'Service Projects';
-    res.render('projects', { title });
+    
+    // Pasamos el título y la lista de proyectos a la plantilla 'projects.ejs'
+    res.render('projects', { title, projects });
 });
+
 
 app.get('/categories', async (req, res) => {
     const title = 'Categories';
