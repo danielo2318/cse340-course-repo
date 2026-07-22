@@ -19,4 +19,25 @@ const getAllProjects = async () => {
     return result.rows;
 };
 
-export { getAllProjects };
+const getProjectsByOrganizationId = async (organizationId) => {
+      const query = `
+        SELECT
+          project_id,
+          organization_id,
+          title,
+          description,
+          location,
+          project_date AS date -- 👈 Renombramos project_date a "date" para que coincida con lo que espera tu vista EJS
+        FROM public.service_project -- 👈 Cambiado a tu tabla real
+        WHERE organization_id = $1
+        ORDER BY project_date; -- 👈 Cambiado a tu columna real de fecha
+      `;
+      
+      const queryParams = [organizationId];
+      const result = await db.query(query, queryParams);
+
+      return result.rows;
+};
+
+// Export the model functions
+export { getAllProjects, getProjectsByOrganizationId };
