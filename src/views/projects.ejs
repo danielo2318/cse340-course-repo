@@ -1,22 +1,23 @@
 <%- include('partials/header') %>
 
-    <main>
-        <h1>
-            <%= title %>
-        </h1>
-        <p>Here are a few of our upcoming service projects:</p>
-        
-        <ul class="projects-list">
-            <% projects.forEach(project => { %>
-                <li style="margin-bottom: 20px; list-style: none; border-bottom: 1px solid #ccc; padding-bottom: 15px;">
-                    <h2><%= project.title %></h2>
-                    <p><strong>Sponsored by:</strong> <%= project.sponsor_organization %></p>
-                    <p><%= project.description %></p>
-                    <p>📍 <strong>Location:</strong> <%= project.location %></p>
-                    <p>📅 <strong>Date:</strong> <%= new Date(project.project_date).toLocaleDateString() %></p>
-                </li>
-            <% }); %>
-        </ul>
-    </main>
+<main class="container">
+    <h1><%= title %></h1>
+    
+    <ul class="projects-list">
+        <% projects.forEach(project => { %>
+            <li>
+                <!-- Enlace al detalle del proyecto -->
+                <a href="/project/<%= project.project_id %>">
+                    <strong><%= project.title %></strong>
+                </a> 
+                - Organized by: 
+                <!-- Enlace al detalle de la organización -->
+                <a href="/organization/<%= project.organization_id %>">
+                    <%= project.organization_name %>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+</main>
 
 <%- include('partials/footer') %>

@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<main class="container">
+    <h1>Category: <%= category.name %></h1>
+    <% if (category.description) { %>
+        <p class="lead"><%= category.description %></p>
+    <% } %>
+    
+    <hr>
+
+    <h2>Service Projects in this Category</h2>
+    <% if (projects.length === 0) { %>
+        <p>No projects found in this category at the moment.</p>
+    <% } else { %>
+        <ul class="projects-list">
+            <% projects.forEach(project => { %>
+                <li style="margin-bottom: 10px;">
+                    <!-- 🔗 Requerimiento: Link a la página de detalles del proyecto -->
+                    <a href="/project/<%= project.project_id %>">
+                        <strong><%= project.title %></strong>
+                    </a>
+                    <span> - <%= project.location %></span>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+
+    <p style="margin-top: 30px;">
+        <a href="/categories" class="btn">Back to Categories</a>
+    </p>
+</main>
+
+<%- include('partials/footer') %>

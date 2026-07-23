@@ -1,4 +1,4 @@
-<%- include('partials/header') %>
+<!-- <%- include('partials/header') %>
 
     <main>
         <h1>
@@ -10,6 +10,28 @@
             <% categories.forEach(category => { %>
                 <li>
                     <%= category.name %>
+                </li>
+            <% }); %>
+        </ul>
+    </main>
+
+<%- include('partials/footer') %>
+ -->
+<%- include('partials/header') %>
+
+    <main class="container">
+        <h1>
+            <%= title %>
+        </h1>
+        <p>Browse our service projects by category:</p>
+        
+        <ul class="categories-list">
+            <% categories.forEach(category => { %>
+                <li style="margin-bottom: 10px;">
+                    <!-- 🔗 Requerimiento: El nombre ahora es un enlace dinámico al detalle de la categoría -->
+                    <a href="/category/<%= category.category_id %>">
+                        <%= category.name %>
+                    </a>
                 </li>
             <% }); %>
         </ul>

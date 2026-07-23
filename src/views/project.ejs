@@ -1,0 +1,56 @@
+<!-- <%- include('partials/header') %>
+
+<main class="container">
+    <h1><%= project.title %></h1>
+    <p class="lead"><%= project.description %></p>
+    
+    <div class="project-details">
+        <p><strong>Date:</strong> <%= project.date %></p>
+        <p><strong>Location:</strong> <%= project.location %></p>
+        <p><strong>Partner Organization:</strong> 
+            <a href="/organization/<%= project.organization_id %>">
+                <%= project.organization_name %>
+            </a>
+        </p>
+    </div>
+    
+    <p><a href="/projects" class="btn">Back to Upcoming Projects</a></p>
+</main>
+
+<%- include('partials/footer') %> -->
+
+<%- include('partials/header') %>
+
+<main class="container">
+    <h1><%= project.title %></h1>
+
+    <!-- 🔗 REQUERIMIENTO: Mostrar las etiquetas de las categorías del proyecto -->
+    <% if (categories && categories.length > 0) { %>
+        <div class="project-tags" style="margin-bottom: 20px;">
+            <strong style="margin-right: 5px;">Categories:</strong>
+            <% categories.forEach(cat => { %>
+                <!-- Cada tag es un enlace dinámico a su respectiva categoría -->
+                <a href="/category/<%= cat.category_id %>" style="display: inline-block; background: #e2e8f0; color: #4a5568; padding: 3px 10px; margin-right: 8px; border-radius: 4px; font-size: 0.9rem; text-decoration: none; font-weight: 500;">
+                    #<%= cat.name %>
+                </a>
+            <% }) %>
+        </div>
+    <% } %>
+    
+    <p class="lead"><%= project.description %></p>
+    
+    <div class="project-details">
+        <!-- Convertimos la fecha a un formato legible en caso de que venga como objeto de base de datos -->
+        <p><strong>Date:</strong> <%= new Date(project.date).toLocaleDateString() %></p>
+        <p><strong>Location:</strong> <%= project.location %></p>
+        <p><strong>Partner Organization:</strong> 
+            <a href="/organization/<%= project.organization_id %>">
+                <%= project.organization_name %>
+            </a>
+        </p>
+    </div>
+    
+    <p><a href="/projects" class="btn">Back to Upcoming Projects</a></p>
+</main>
+
+<%- include('partials/footer') %>
